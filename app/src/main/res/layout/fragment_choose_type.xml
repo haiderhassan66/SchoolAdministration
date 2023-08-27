@@ -14,13 +14,12 @@
             android:id="@+id/heading_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_80sdp"
             android:text="Choose Account!"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="32sp"
+            android:textSize="@dimen/_24sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,9 +28,9 @@
             android:id="@+id/admin_cv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:cardCornerRadius="5dp"
+            android:layout_marginTop="@dimen/_18sdp"
             android:onClick="@{()->viewModel.admin()}"
+            app:cardCornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/heading_tv">
@@ -44,20 +43,20 @@
 
                 <ImageView
                     android:id="@+id/admin_iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginVertical="18dp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:layout_marginVertical="@dimen/_14sdp"
+                    android:src="@drawable/admin" />
 
                 <TextView
                     android:id="@+id/admin_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Admin"
                     android:paddingBottom="8dp"
-                    android:textColor="@color/black"
+                    android:text="Admin"
                     android:textAlignment="center"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -66,9 +65,9 @@
             android:id="@+id/student_cv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:cardCornerRadius="5dp"
+            android:layout_marginTop="@dimen/_18sdp"
             android:onClick="@{()->viewModel.student()}"
+            app:cardCornerRadius="5dp"
             app:layout_constraintEnd_toStartOf="@+id/consultant_cv"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,20 +81,20 @@
 
                 <ImageView
                     android:id="@+id/student_iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginVertical="18dp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:layout_marginVertical="@dimen/_14sdp"
+                    android:src="@drawable/student" />
 
                 <TextView
                     android:id="@+id/student_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Student"
                     android:paddingBottom="8dp"
-                    android:textColor="@color/black"
+                    android:text="Student"
                     android:textAlignment="center"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -104,9 +103,9 @@
             android:id="@+id/consultant_cv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:cardCornerRadius="5dp"
+            android:layout_marginTop="@dimen/_18sdp"
             android:onClick="@{()->viewModel.consultant()}"
+            app:cardCornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/student_cv"
@@ -120,20 +119,20 @@
 
                 <ImageView
                     android:id="@+id/consultant_iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginVertical="18dp"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:layout_marginVertical="@dimen/_14sdp"
+                    android:src="@drawable/teacher" />
 
                 <TextView
                     android:id="@+id/consultant_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Consultant"
                     android:paddingBottom="8dp"
-                    android:textColor="@color/black"
+                    android:text="Consultant"
                     android:textAlignment="center"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>

@@ -3,6 +3,7 @@
     <style name="Base.Theme.SchoolAdministration" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
          <item name="colorPrimary">@color/white</item>
+        <item name="android:statusBarColor">@color/orange</item>
     </style>
 
     <style name="Theme.SchoolAdministration" parent="Base.Theme.SchoolAdministration" />

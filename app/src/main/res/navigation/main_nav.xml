@@ -9,13 +9,34 @@
         android:id="@+id/siginFragment"
         android:name="com.example.schooladministration.view.sigin.SiginFragment"
         android:label="fragment_sigin"
-        tools:layout="@layout/fragment_sigin" />
+        tools:layout="@layout/fragment_sigin" >
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_siginFragment_to_signUp"
+            app:destination="@id/signUp" />
+    </fragment>
+
     <fragment
         android:id="@+id/chooseType"
         android:name="com.example.schooladministration.view.choosetype.ChooseType"
-        android:label="ChooseType" >
+        android:label="ChooseType">
         <action
             android:id="@+id/action_chooseType_to_siginFragment"
-            app:destination="@id/siginFragment" />
+            app:destination="@id/siginFragment">
+            <argument
+                android:name="type"
+                app:argType="string" />
+        </action>
     </fragment>
+    <fragment
+        android:id="@+id/signUp"
+        android:name="com.example.schooladministration.view.signUp.SignUp"
+        android:label="SignUp" >
+        <argument
+            android:name="type"
+            app:argType="string" />
+    </fragment>
+
 </navigation>
