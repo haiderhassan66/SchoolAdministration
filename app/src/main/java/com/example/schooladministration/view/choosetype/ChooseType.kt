@@ -1,6 +1,7 @@
 package com.example.schooladministration.view.choosetype
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.schooladministration.databinding.FragmentChooseTypeBinding
+import com.example.schooladministration.utils.Singleton
 import com.example.schooladministration.viewmodel.ChooseEnum
 import com.example.schooladministration.viewmodel.ChooseTypeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 class ChooseType : Fragment() {
 
@@ -24,6 +27,13 @@ class ChooseType : Fragment() {
         // Inflate the layout for this fragment
         _binding =  FragmentChooseTypeBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
+
+        if (Singleton.user!=null){
+//            Log.d("checking","is login ${viewModel.isLogin}  ${viewModel.user} ${viewModel.type}")
+            findNavController().navigate(ChooseTypeDirections.actionChooseTypeToHomeScreen(
+                Singleton.type!!
+            ))
+        }
         return binding.root
     }
 

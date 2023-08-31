@@ -12,10 +12,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.schooladministration.R
 import com.example.schooladministration.databinding.FragmentSiginBinding
-import com.example.schooladministration.utils.Firebase
 import com.example.schooladministration.viewmodel.SignInNav
 import com.example.schooladministration.viewmodel.SignInViewModel
+import com.google.gson.Gson
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SiginFragment : Fragment() {
     private var _binding:FragmentSiginBinding?=null
     private val binding get() = _binding!!
@@ -28,7 +30,7 @@ class SiginFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentSiginBinding.inflate(layoutInflater, container, false)
 
-        Log.d("checking",args.type)
+//        Log.d("checking",args.type)
         when(args.type){
             "admin"->{
                 binding.userIv.setImageDrawable(resources.getDrawable(R.drawable.admin))
@@ -55,21 +57,26 @@ class SiginFragment : Fragment() {
         viewModel.navigate.observe(viewLifecycleOwner){
             when(it){
                 SignInNav.SIGNIN->{
-                    Firebase.signIn(viewModel.emailText.value.toString(),viewModel.passwordText.value.toString(),args.type){isTrue,message,model->
-                        if (isTrue){
-                            Log.d("checking",model.toString())
-                            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-                        } else {
-                            Log.d("checking",message)
-                            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-                        }
-                    }
+                    viewModel.signin(args.type)
                 }
                 SignInNav.SIGNUP->{
                     findNavController().navigate(SiginFragmentDirections.actionSiginFragmentToSignUp(
                         args.type
                     ))
                 }
+            }
+        }
+
+        viewModel.signinResponse.observe(viewLifecycleOwner){
+            if (it.status){
+                viewModel.saveData(Gson().toJson(it.data),args.type)
+//                Log.d("checking",it.data.toString())
+                findNavController().navigate(SiginFragmentDirections.actionSiginFragmentToHomeScreen(
+                    args.type
+                ))
+//                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
             }
         }
     }

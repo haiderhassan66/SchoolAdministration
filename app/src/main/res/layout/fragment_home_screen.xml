@@ -10,6 +10,7 @@
     </data>
 
     <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -31,6 +32,7 @@
                 android:layout_width="@dimen/_34sdp"
                 android:layout_height="@dimen/_34sdp"
                 android:src="@drawable/drawer"
+                android:onClick="@{()->viewModel.drawerClick()}"
                 app:layout_constraintBottom_toBottomOf="@+id/toolbar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +43,8 @@
                 android:id="@+id/heading_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Heading"
+                android:text="Online Tutor"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_18sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/toolbar"
@@ -89,23 +92,23 @@
 
                 <ImageView
                     android:id="@+id/IM_menu"
-                    android:layout_width="50sp"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:src="@drawable/admin"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="@dimen/_10sdp"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/TV_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:text="Name"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_13sdp"
-                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16sdp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/IM_menu" />
                 <View
@@ -131,69 +134,68 @@
                         android:id="@+id/profile_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/_13sdp"
-                        android:textColor="@color/black"
-                        android:textAllCaps="false"
+                        android:layout_marginTop="@dimen/_16sdp"
                         android:onClick="@{()->viewModel.clickProfile()}"
                         android:text="Profile"
-                        android:layout_marginTop="@dimen/_16sdp"
-                        />
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp" />
+
                     <TextView
                         android:id="@+id/quiz_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/_13sdp"
-                        android:textColor="@color/black"
-                        android:textAllCaps="false"
+                        android:layout_marginTop="@dimen/_16sdp"
                         android:onClick="@{()->viewModel.clickQuiz()}"
                         android:text="Quiz"
-                        android:layout_marginTop="@dimen/_16sdp"
-                        />
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp" />
+
                     <TextView
                         android:id="@+id/consultant_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/_13sdp"
-                        android:textColor="@color/black"
-                        android:onClick="@{()->viewModel.clickCounsultant()}"
-                        android:textAllCaps="false"
-                        android:text="Consultants"
                         android:layout_marginTop="@dimen/_16sdp"
-                        />
+                        android:onClick="@{()->viewModel.clickCounsultant()}"
+                        android:text="Consultants"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp" />
+
                     <TextView
                         android:id="@+id/student_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/_13sdp"
-                        android:textColor="@color/black"
-                        android:onClick="@{()->viewModel.clickStudent()}"
-                        android:textAllCaps="false"
-                        android:text="Students"
                         android:layout_marginTop="@dimen/_16sdp"
-                        />
+                        android:onClick="@{()->viewModel.clickStudent()}"
+                        android:text="Students"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp" />
+
                     <TextView
                         android:id="@+id/paper_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/_13sdp"
-                        android:textColor="@color/black"
-                        android:onClick="@{()->viewModel.clickPaper()}"
-                        android:textAllCaps="false"
-                        android:text="Papers"
                         android:layout_marginTop="@dimen/_16sdp"
-                        />
+                        android:onClick="@{()->viewModel.clickPaper()}"
+                        android:text="Papers"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp" />
+
                     <TextView
                         android:id="@+id/log_out_TV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/_13sdp"
-                        android:textColor="@color/black"
-                        android:textAllCaps="false"
+                        android:layout_marginTop="@dimen/_16sdp"
                         android:onClick="@{()->viewModel.clickLogout()}"
                         android:text="Logout"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
 
-                        android:layout_marginTop="@dimen/_16sdp"
-                        />
+                        android:textSize="@dimen/_16sdp" />
 
                 </LinearLayout>
 

@@ -9,10 +9,6 @@ import android.widget.AdapterView
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.schooladministration.R
-import com.example.schooladministration.utils.Firebase
-import kotlinx.coroutines.launch
 
 class SignUpViewModel:ViewModel() {
     var validEmail = ObservableField(true)
@@ -33,7 +29,7 @@ class SignUpViewModel:ViewModel() {
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             // Handle the item selection event here
             education = spinnerItems.value?.get(position).toString()
-            Log.d("checking",spinnerItems.value?.get(position).toString())
+//            Log.d("checking",spinnerItems.value?.get(position).toString())
         }
 
         override fun onNothingSelected(parent: AdapterView<*>?) {

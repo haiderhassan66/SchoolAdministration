@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SchoolAdministration</string>
+    <string name="app_name">Online Tutor</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="don_t_have_account_sign_up"><font color="#FF000000">Don\'t have account?</font> <font color="#FF5722">Sign Up</font></string>

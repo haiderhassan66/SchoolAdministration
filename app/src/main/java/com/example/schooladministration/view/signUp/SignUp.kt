@@ -1,18 +1,15 @@
 package com.example.schooladministration.view.signUp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.schooladministration.R
 import com.example.schooladministration.databinding.FragmentSignUpBinding
-import com.example.schooladministration.utils.Firebase
 import com.example.schooladministration.viewmodel.SignInNav
 import com.example.schooladministration.viewmodel.SignUpViewModel
 
@@ -51,16 +48,16 @@ class SignUp : Fragment() {
         viewModel.signUpNav.observe(viewLifecycleOwner){
             when(it){
                 SignInNav.SIGNUP->{
-                    Firebase.signUp(viewModel.emailText.value.toString(),viewModel.passwordText.value.toString(),
-                    viewModel.education,viewModel.nameText.value.toString(),args.type){isTrue,message->
-                        if (isTrue){
-                            Log.d("checking","user added")
-                            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-                        } else {
-                            Log.d("checking",message)
-                            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-                        }
-                    }
+//                    Firebase.signUp(viewModel.emailText.value.toString(),viewModel.passwordText.value.toString(),
+//                    viewModel.education,viewModel.nameText.value.toString(),args.type){isTrue,message->
+//                        if (isTrue){
+//                            Log.d("checking","user added")
+//                            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+//                        } else {
+//                            Log.d("checking",message)
+//                            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+//                        }
+//                    }
                 } else-> {
 
                 }

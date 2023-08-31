@@ -16,6 +16,15 @@
         <action
             android:id="@+id/action_siginFragment_to_signUp"
             app:destination="@id/signUp" />
+        <action
+            android:id="@+id/action_siginFragment_to_homeScreen"
+            app:destination="@id/homeScreen"
+            app:popUpTo="@id/chooseType"
+            app:popUpToInclusive="true">
+            <argument
+                android:name="type"
+                app:argType="string" />
+        </action>
     </fragment>
 
     <fragment
@@ -29,11 +38,37 @@
                 android:name="type"
                 app:argType="string" />
         </action>
+        <action
+            android:id="@+id/action_chooseType_to_homeScreen"
+            app:destination="@id/homeScreen"
+            app:popUpTo="@id/chooseType"
+            app:popUpToInclusive="true">
+            <argument
+                android:name="type"
+                app:argType="string" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/signUp"
         android:name="com.example.schooladministration.view.signUp.SignUp"
         android:label="SignUp" >
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_signUp_to_homeScreen"
+            app:destination="@id/homeScreen"
+            app:popUpTo="@id/chooseType"
+            app:popUpToInclusive="true">
+            <argument
+                android:name="type"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/homeScreen"
+        android:name="com.example.schooladministration.view.homescreen.HomeScreen"
+        android:label="HomeScreen" >
         <argument
             android:name="type"
             app:argType="string" />
