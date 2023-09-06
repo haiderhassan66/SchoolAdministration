@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.schooladministration.model.SignUpModel
 import com.example.schooladministration.repo.DataStoreRepo
-import com.example.schooladministration.utils.Singleton
 import com.example.schooladministration.utils.Singleton.type
 import com.example.schooladministration.utils.Singleton.user
 import com.google.gson.Gson

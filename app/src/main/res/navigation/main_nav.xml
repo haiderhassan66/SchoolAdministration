@@ -72,6 +72,82 @@
         <argument
             android:name="type"
             app:argType="string" />
+        <action
+            android:id="@+id/action_homeScreen_to_users"
+            app:destination="@id/users" />
+        <action
+            android:id="@+id/action_homeScreen_to_chooseType"
+            app:destination="@id/chooseType"
+            app:popUpTo="@id/chooseType" />
+        <action
+            android:id="@+id/action_homeScreen_to_quiz"
+            app:destination="@id/quiz" />
+        <action
+            android:id="@+id/action_homeScreen_to_paper"
+            app:destination="@id/paper" />
+        <action
+            android:id="@+id/action_homeScreen_self"
+            app:destination="@id/homeScreen"
+            app:popUpTo="@id/homeScreen"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeScreen_to_scope"
+            app:destination="@id/scope" />
     </fragment>
+    <fragment
+        android:id="@+id/users"
+        android:name="com.example.schooladministration.view.userlist.Users"
+        android:label="Users" >
+        <action
+            android:id="@+id/action_users_to_appointment"
+            app:destination="@id/appointment" />
+        <argument
+            android:name="type"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/appointment"
+        android:name="com.example.schooladministration.view.appointment.Appointment"
+        android:label="Appointment" >
+        <argument
+            android:name="user"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_appointment_to_homeScreen"
+            app:destination="@id/homeScreen"
+            app:popUpTo="@id/homeScreen"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/quiz"
+        android:name="com.example.schooladministration.view.quiz.Quiz"
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz" />
+    <fragment
+        android:id="@+id/paper"
+        android:name="com.example.schooladministration.view.paper.Paper"
+        android:label="Paper" >
+        <action
+            android:id="@+id/action_paper_to_paperDetails"
+            app:destination="@id/paperDetails" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/paperDetails"
+        android:name="com.example.schooladministration.view.paper.paperdetails.PaperDetails"
+        android:label="fragment_paper_details"
+        tools:layout="@layout/fragment_paper_details" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/scope"
+        android:name="com.example.schooladministration.view.scope.Scope"
+        android:label="Scope" />
 
 </navigation>

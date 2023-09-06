@@ -12,6 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.schooladministration.R
 import com.example.schooladministration.databinding.FragmentSiginBinding
+import com.example.schooladministration.utils.Singleton
+import com.example.schooladministration.utils.Util
 import com.example.schooladministration.viewmodel.SignInNav
 import com.example.schooladministration.viewmodel.SignInViewModel
 import com.google.gson.Gson
@@ -57,6 +59,7 @@ class SiginFragment : Fragment() {
         viewModel.navigate.observe(viewLifecycleOwner){
             when(it){
                 SignInNav.SIGNIN->{
+                    Util.show_loader(requireContext())
                     viewModel.signin(args.type)
                 }
                 SignInNav.SIGNUP->{
@@ -68,7 +71,10 @@ class SiginFragment : Fragment() {
         }
 
         viewModel.signinResponse.observe(viewLifecycleOwner){
+            Util.hide_loader()
             if (it.status){
+                Singleton.user = it.data
+                Singleton.type = args.type
                 viewModel.saveData(Gson().toJson(it.data),args.type)
 //                Log.d("checking",it.data.toString())
                 findNavController().navigate(SiginFragmentDirections.actionSiginFragmentToHomeScreen(
@@ -76,7 +82,7 @@ class SiginFragment : Fragment() {
                 ))
 //                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
             }
         }
     }
