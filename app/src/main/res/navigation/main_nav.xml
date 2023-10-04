@@ -80,9 +80,6 @@
             app:destination="@id/chooseType"
             app:popUpTo="@id/chooseType" />
         <action
-            android:id="@+id/action_homeScreen_to_quiz"
-            app:destination="@id/quiz" />
-        <action
             android:id="@+id/action_homeScreen_to_paper"
             app:destination="@id/paper" />
         <action
@@ -93,6 +90,9 @@
         <action
             android:id="@+id/action_homeScreen_to_scope"
             app:destination="@id/scope" />
+        <action
+            android:id="@+id/action_homeScreen_to_selectSubject"
+            app:destination="@id/selectSubject" />
     </fragment>
     <fragment
         android:id="@+id/users"
@@ -149,5 +149,28 @@
         android:id="@+id/scope"
         android:name="com.example.schooladministration.view.scope.Scope"
         android:label="Scope" />
+    <fragment
+        android:id="@+id/selectSubject"
+        android:name="com.example.schooladministration.view.quiz.SelectSubject"
+        android:label="SelectSubject" >
+        <action
+            android:id="@+id/action_selectSubject_to_questions"
+            app:destination="@id/questions" />
+        <action
+            android:id="@+id/action_selectSubject_to_quiz"
+            app:destination="@id/quiz" />
+    </fragment>
+    <fragment
+        android:id="@+id/questions"
+        android:name="com.example.schooladministration.view.quiz.Questions"
+        android:label="Questions" >
+        <action
+            android:id="@+id/action_questions_to_addQuestion"
+            app:destination="@id/addQuestion" />
+    </fragment>
+    <fragment
+        android:id="@+id/addQuestion"
+        android:name="com.example.schooladministration.view.quiz.AddQuestion"
+        android:label="AddQuestion" />
 
 </navigation>

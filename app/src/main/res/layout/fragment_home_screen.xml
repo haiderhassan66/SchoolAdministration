@@ -30,6 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/menu"
                 android:layout_width="@dimen/_34sdp"
                 android:layout_height="@dimen/_34sdp"
                 android:src="@drawable/drawer"
@@ -44,13 +45,13 @@
                 android:id="@+id/heading_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Online Tutor"
+                android:text="@string/app_name"
                 android:textStyle="bold"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_18sdp"
+                android:textSize="@dimen/_15sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/toolbar"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/menu"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout

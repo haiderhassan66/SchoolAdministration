@@ -92,7 +92,7 @@ class HomeScreen : Fragment() {
                     findNavController().navigate(HomeScreenDirections.actionHomeScreenToChooseType())
                 }
                 HomeNav.QUIZ->{
-                    findNavController().navigate(R.id.action_homeScreen_to_quiz)
+                    findNavController().navigate(R.id.action_homeScreen_to_selectSubject)
                     closeDrawer()
                 }
                 HomeNav.PAPER->{
