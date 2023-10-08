@@ -48,6 +48,7 @@ class HomeScreen : Fragment() {
             "consultant"->{
                 binding.consultantTv.visibility = View.GONE
                 binding.studentTv.visibility = View.GONE
+                binding.TVAppointment.visibility = View.VISIBLE
                 viewModel.consultantAppointment(Singleton.user!!.userId)
             }
             "student"->{
@@ -113,8 +114,10 @@ class HomeScreen : Fragment() {
                 if (!it.appointmentArray.isNullOrEmpty()) {
                     viewModel.isListEmpty.set(false)
                     adapter.updateList(it.appointmentArray)
+                    binding.TVAppointment.text = "no of appointments: ${it.appointmentArray.size}"
                     Log.d("checking",it.appointmentArray.toString())
                 } else {
+                    binding.TVAppointment.text = "no of appointments: 0"
 //                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                 }
             }

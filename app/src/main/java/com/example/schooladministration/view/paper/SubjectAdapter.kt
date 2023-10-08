@@ -5,13 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.schooladministration.R
-import com.example.schooladministration.databinding.PaperItemBinding
-import java.util.zip.Inflater
+import com.example.schooladministration.databinding.SubjectItemBinding
 
-class PaperAdapter(private val list:List<String>,val onClick:(position:Int)->Unit):RecyclerView.Adapter<PaperAdapter.PaperViewHolder>() {
+class SubjectAdapter(private val list:List<String>, val onClick:(subject:String)->Unit):RecyclerView.Adapter<SubjectAdapter.PaperViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PaperViewHolder {
-        return PaperViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.paper_item,parent,false))
+        return PaperViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.subject_item,parent,false))
     }
 
     override fun onBindViewHolder(holder: PaperViewHolder, position: Int) {
@@ -20,7 +19,7 @@ class PaperAdapter(private val list:List<String>,val onClick:(position:Int)->Uni
         holder.binding.paperTv.text = item
 
         holder.binding.paperTv.setOnClickListener {
-            onClick(position)
+            onClick(item)
         }
     }
 
@@ -29,6 +28,6 @@ class PaperAdapter(private val list:List<String>,val onClick:(position:Int)->Uni
     }
 
     class PaperViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
-        val binding = PaperItemBinding.bind(itemView)
+        val binding = SubjectItemBinding.bind(itemView)
     }
 }

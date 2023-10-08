@@ -122,7 +122,15 @@
         android:id="@+id/quiz"
         android:name="com.example.schooladministration.view.quiz.Quiz"
         android:label="fragment_quiz"
-        tools:layout="@layout/fragment_quiz" />
+        tools:layout="@layout/fragment_quiz" >
+        <argument
+            android:name="subject"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_quiz_to_result"
+            app:destination="@id/result"
+            app:popUpTo="@id/selectSubject" />
+    </fragment>
     <fragment
         android:id="@+id/paper"
         android:name="com.example.schooladministration.view.paper.Paper"
@@ -130,10 +138,6 @@
         <action
             android:id="@+id/action_paper_to_paperDetails"
             app:destination="@id/paperDetails" />
-        <argument
-            android:name="id"
-            app:argType="integer"
-            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/paperDetails"
@@ -141,9 +145,8 @@
         android:label="fragment_paper_details"
         tools:layout="@layout/fragment_paper_details" >
         <argument
-            android:name="id"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:name="subject"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/scope"
@@ -167,10 +170,25 @@
         <action
             android:id="@+id/action_questions_to_addQuestion"
             app:destination="@id/addQuestion" />
+        <argument
+            android:name="subject"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addQuestion"
         android:name="com.example.schooladministration.view.quiz.AddQuestion"
-        android:label="AddQuestion" />
+        android:label="AddQuestion" >
+        <argument
+            android:name="subject"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/result"
+        android:name="com.example.schooladministration.view.quiz.Result"
+        android:label="Result" >
+        <argument
+            android:name="result"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

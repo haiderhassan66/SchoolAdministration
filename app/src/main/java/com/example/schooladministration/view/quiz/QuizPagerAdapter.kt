@@ -14,7 +14,7 @@ import com.example.schooladministration.model.QuizModel
 
 class QuizPagerAdapter(
     private val list: List<QuizModel>,
-    private val onClick:(position:Int)->Unit):RecyclerView.Adapter<QuizPagerAdapter.QuizViewHolder>() {
+    private val onClick:(position:Int,result:Int)->Unit):RecyclerView.Adapter<QuizPagerAdapter.QuizViewHolder>() {
 
     var result = 0
 
@@ -24,7 +24,7 @@ class QuizPagerAdapter(
 
     private fun nextClick(binding: QuizItemBinding,position: Int) {
         binding.signinBtn.setOnClickListener {
-            onClick(position)
+            onClick(position,result)
             Log.d("checking",result.toString())
         }
     }
@@ -119,26 +119,27 @@ class QuizPagerAdapter(
     }
 
     override fun getItemCount(): Int {
-        return 6
+        return list.size
     }
 
     override fun onBindViewHolder(holder: QuizViewHolder, position: Int) {
-        if (position<5) {
+//        if (position<5) {
             setValues(holder.binding, position)
 
             optionClick(holder.binding, position)
 
             nextClick(holder.binding, position)
-        } else {
-            holder.binding.imageView.visibility = View.VISIBLE
-            holder.binding.textView3.visibility = View.VISIBLE
-            holder.binding.textView3.text = "Your Score: $result/50"
-            holder.binding.option1TV.visibility = View.GONE
-            holder.binding.option2TV.visibility = View.GONE
-            holder.binding.option3TV.visibility = View.GONE
-            holder.binding.option4TV.visibility = View.GONE
-            holder.binding.questionTV.visibility = View.GONE
-            holder.binding.signinBtn.visibility = View.GONE
-        }
+//        }
+//        else {
+//            holder.binding.imageView.visibility = View.VISIBLE
+//            holder.binding.textView3.visibility = View.VISIBLE
+//            holder.binding.textView3.text = "Your Score: $result/50"
+//            holder.binding.option1TV.visibility = View.GONE
+//            holder.binding.option2TV.visibility = View.GONE
+//            holder.binding.option3TV.visibility = View.GONE
+//            holder.binding.option4TV.visibility = View.GONE
+//            holder.binding.questionTV.visibility = View.GONE
+//            holder.binding.signinBtn.visibility = View.GONE
+//        }
     }
 }

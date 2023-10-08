@@ -6,13 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.schooladministration.R
 import com.example.schooladministration.databinding.FragmentPaperBinding
 
 class Paper : Fragment() {
     private var _binding:FragmentPaperBinding?=null
     private val binding get() = _binding!!
-    private lateinit var adapter: PaperAdapter
+    private lateinit var adapter: SubjectAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,7 +34,7 @@ class Paper : Fragment() {
             add("Computer")
             add("Biology")
         }
-        adapter = PaperAdapter(list){
+        adapter = SubjectAdapter(list){
             findNavController().navigate(PaperDirections.actionPaperToPaperDetails(it))
         }
         binding.recyclerView.adapter = adapter

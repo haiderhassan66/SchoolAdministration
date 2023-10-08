@@ -5,13 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.schooladministration.R
-import com.example.schooladministration.databinding.PaperItemBinding
 import com.example.schooladministration.databinding.QuestionItemBinding
 import com.example.schooladministration.model.QuizModel
-import com.example.schooladministration.view.paper.PaperAdapter
+import com.example.schooladministration.utils.Singleton
 
-class QuestionAdapter(private val list:List<QuizModel>,val onClick:(position:Int)->Unit):
+class QuestionAdapter(val onClick:(quiz:QuizModel)->Unit):
     RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder>() {
+    private val list:MutableList<QuizModel> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionViewHolder {
         return QuestionViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.question_item,parent,false))
@@ -21,14 +21,23 @@ class QuestionAdapter(private val list:List<QuizModel>,val onClick:(position:Int
         val item = list[position]
 
         holder.binding.questionTv.text = item.question
+        if (Singleton.type=="student"){
+            holder.binding.cross.visibility = View.GONE
+        }
 
         holder.binding.cross.setOnClickListener {
-            onClick(position)
+            onClick(item)
         }
     }
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    fun updateList(list: List<QuizModel>){
+        this.list.clear()
+        this.list.addAll(list)
+        notifyDataSetChanged()
     }
 
     class QuestionViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){

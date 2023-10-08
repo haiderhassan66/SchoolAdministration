@@ -18,17 +18,18 @@ class Scope : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentScopeBinding.inflate(inflater, container, false)
-        when(Singleton.user?.education){
-            "Matriculation"->{
-                binding.scopeTv.text = getText(R.string.matric_scope)
-            }
-            "Intermediate"->{
-                binding.scopeTv.text = getText(R.string.inter_scope)
-            }
-            "Graduation"->{
-                binding.scopeTv.text = getText(R.string.graduation_scope)
-            }
-        }
+//        when(Singleton.user?.education){
+//            "Matriculation"->{
+//                binding.scopeTv.text = getText(R.string.matric_scope)
+//            }
+//            "Intermediate"->{
+//                binding.scopeTv.text = getText(R.string.inter_scope)
+//            }
+//            "Graduation"->{
+//                binding.scopeTv.text = getText(R.string.graduation_scope)
+//            }
+//        }
+        binding.scopeTv.text = getText(R.string.consulting_scope)
         return binding.root
     }
 }

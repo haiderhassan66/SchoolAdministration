@@ -7,16 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.schooladministration.R
-import com.example.schooladministration.databinding.FragmentPaperBinding
 import com.example.schooladministration.databinding.FragmentSelectSubjectBinding
 import com.example.schooladministration.utils.Singleton
-import com.example.schooladministration.view.paper.PaperAdapter
-import com.example.schooladministration.view.paper.PaperDirections
+import com.example.schooladministration.view.paper.SubjectAdapter
 
 class SelectSubject : Fragment() {
     private var _binding: FragmentSelectSubjectBinding?=null
     private val binding get() = _binding!!
-    private lateinit var adapter: PaperAdapter
+    private lateinit var adapter: SubjectAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,11 +42,15 @@ class SelectSubject : Fragment() {
             add("Computer")
             add("Biology")
         }
-        adapter = PaperAdapter(list){
+        adapter = SubjectAdapter(list){
             if (Singleton.type == "student"){
-                findNavController().navigate(R.id.action_selectSubject_to_quiz)
+                findNavController().navigate(SelectSubjectDirections.actionSelectSubjectToQuiz(
+                    it
+                ))
             } else {
-                findNavController().navigate(R.id.action_selectSubject_to_questions)
+                findNavController().navigate(SelectSubjectDirections.actionSelectSubjectToQuestions(
+                    it
+                ))
             }
         }
         binding.recyclerView.adapter = adapter

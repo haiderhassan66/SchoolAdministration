@@ -120,6 +120,15 @@
                     android:textSize="@dimen/_16sdp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
+                <TextView
+                    android:id="@+id/TV_appointment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/TV_name"
+                    app:layout_constraintStart_toStartOf="parent"/>
                 <View
                     android:id="@+id/view_menu"
                     android:layout_width="match_parent"

@@ -1,17 +1,26 @@
 package com.example.schooladministration.db
 
+import android.net.Uri
 import android.util.Log
 import com.example.schooladministration.model.AppointmentModel
+import com.example.schooladministration.model.PaperImageModel
+import com.example.schooladministration.model.QuizModel
 import com.example.schooladministration.model.Response
 import com.example.schooladministration.model.SignUpModel
+import com.google.api.Context
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.util.Calendar
 
 class Firebase : IFirebase {
 
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
+    private val storage = FirebaseStorage.getInstance()
     override suspend fun signIn(
         email: String,
         password: String,
@@ -152,6 +161,132 @@ class Firebase : IFirebase {
                 }
             }.addOnFailureListener { e ->
                 onComplete(Response(false, e.message.toString()))
+            }
+    }
+
+    override suspend fun addQuizQuestion(
+        question: String,
+        option1: String,
+        option2: String,
+        option3: String,
+        option4: String,
+        result: String,
+        subject: String,
+        onComplete: (Response?) -> Unit
+    ) {
+        val collection = db.collection("quiz")
+        val id = collection.document().id
+        val quizQuestion =
+            QuizModel(id,question, option1, option2, option3, option4, result, subject)
+
+        collection.document(id)
+            .set(quizQuestion)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    onComplete(Response(true, "Question added!"))
+                }
+            }.addOnFailureListener { e ->
+                onComplete(Response(false, e.message.toString()))
+            }
+    }
+
+    override suspend fun getQuizQuestions(subject: String, onComplete: (Response?) -> Unit) {
+        db.collection("quiz")
+            .whereEqualTo("subject", subject)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                val quizQuestion = mutableListOf<QuizModel>()
+                for (document in querySnapshot) {
+                    val quiz = document.toObject(QuizModel::class.java)
+                    quizQuestion.add(quiz)
+                }
+                if (quizQuestion.isNotEmpty()) {
+                    onComplete(Response(true, "success", quizArray = quizQuestion))
+                }
+                else {
+                    onComplete(Response(true, "quiz not found", quizArray = quizQuestion))
+                }
+
+            }.addOnFailureListener {
+                onComplete(Response(false, it.message.toString(), null))
+            }
+    }
+
+    override suspend fun deleteQuiz(id: String, onComplete: (Response?) -> Unit) {
+        db.collection("quiz")
+            .document(id)
+            .delete()
+            .addOnSuccessListener {
+                onComplete(Response(true,"Deleted"))
+            }.addOnFailureListener {
+                onComplete(Response(false, it.message.toString()))
+            }
+    }
+
+    override suspend fun uploadImage(uri: Uri, subject: String,onComplete: (Response?) -> Unit) {
+        val timeStamp = Calendar.getInstance().timeInMillis
+        val imageRef = storage.reference.child("paperImages/$timeStamp.jpg")
+        imageRef.putFile(uri)
+            .addOnSuccessListener {
+                imageRef.downloadUrl.addOnSuccessListener { downloadUri ->
+                    val imageUrl = downloadUri.toString()
+                    uploadPaper(imageUrl,subject){
+                        onComplete(it)
+                    }
+                }
+            }
+            .addOnFailureListener {
+                onComplete(Response(false, it.message.toString()))
+            }
+    }
+
+    private fun uploadPaper(imageUrl: String, subject:String, onComplete: (Response?) -> Unit) {
+        val collection = db.collection("papers")
+        val id = collection.document().id
+        val paperImage =
+            PaperImageModel(id, imageUrl,subject)
+
+        collection.document(id)
+            .set(paperImage)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    onComplete(Response(true, "Paper Uploaded!"))
+                }
+            }.addOnFailureListener { e ->
+                onComplete(Response(false, e.message.toString()))
+            }
+    }
+
+    override suspend fun getPapers(subject: String, onComplete: (Response?) -> Unit) {
+        db.collection("papers")
+            .whereEqualTo("subject", subject)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                val papers = mutableListOf<PaperImageModel>()
+                for (document in querySnapshot) {
+                    val paperDetail = document.toObject(PaperImageModel::class.java)
+                    papers.add(paperDetail)
+                }
+                if (papers.isNotEmpty()) {
+                    onComplete(Response(true, "success", papersArray = papers))
+                }
+                else {
+                    onComplete(Response(true, "papers not found", papersArray = papers))
+                }
+
+            }.addOnFailureListener {
+                onComplete(Response(false, it.message.toString(), null))
+            }
+    }
+
+    override suspend fun deletePaper(id: String, onComplete: (Response?) -> Unit) {
+        db.collection("papers")
+            .document(id)
+            .delete()
+            .addOnSuccessListener {
+                onComplete(Response(true,"Deleted"))
+            }.addOnFailureListener {
+                onComplete(Response(false, it.message.toString()))
             }
     }
 
